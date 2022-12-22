@@ -27,8 +27,7 @@ const Books = () => {
   }
 
   return (
-    <div>
-        
+    <div> 
         <h1>Croko Books</h1>
         <div className="books">
             {books.map((book) => (

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SignIn = () => {
+const Register = () => {
   return (
     <h1>Ssssss</h1>
   )
 }
 
-export default SignIn
+export default Register

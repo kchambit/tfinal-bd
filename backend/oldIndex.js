@@ -1,23 +1,4 @@
-import express from "express"
-const app = express()
-import mysql2 from "mysql2"
-import cors from "cors"
-
-// Separate backend files, routes, actions, etc. 
-
-const db = mysql2.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "crk222",
-    database: "test"
-})
-app.use(express.json())
-app.use(cors())
-
-app.get("/", (req, res) => {
-    res.json("Hello World")
-})
-
+//EXAMPLES OF FUNCTIONS
 app.get("/books", (req, res) => {
     const q = "SELECT * FROM books"
     db.query(q,(err,data)=>{
@@ -67,7 +48,3 @@ app.put("/books/:id", (req, res) => {
       return res.json(data);
     });
 });
-
-app.listen(8800, () => {
-    console.log("App is running on port 8800")
-})
