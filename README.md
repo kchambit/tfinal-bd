@@ -1,4 +1,4 @@
-# Trabajo final
+# Trabajo final BDI-B | Grupo A
 - **Web:** https://illustrious-choux-e16ec5.netlify.app
 
 ## Uso del sistema web
