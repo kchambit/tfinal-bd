@@ -13,6 +13,17 @@ export const login = async (req, res) => {
     return res.status(200).json(user[0]);
     //return user[0].rol;
 }
+// Address api/auth/register
+export const register = async (req, res) => {
+    const {username, password, rol} = req.body;
+    const q = "INSERT INTO usuarios (user, password, rol) VALUES (?, ?, ?)";
+    const [user] = await pool.query(q, [username, password, rol], (err, data) => {
+        if (err) return res.status(404).json("No se pudo registrar el usuario");
+        return res.status(200).json(data);
+    });
+    if (user.affectedRows === 0) return res.status(404).json("No se pudo registrar el usuario");
+}
+
 // Address api/auth/logout
 export const logout = async (req, res) => {
     res.json("Logout");

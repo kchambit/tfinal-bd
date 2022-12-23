@@ -7,7 +7,7 @@ const Contratistas = () => {
     useEffect(() => {
         const fetchAllContratistas = async () => {
             try {
-                const res = await axios.get('http://localhost:8800/api/clientes/contratistas')
+                const res = await axios.get('http://localhost:8800/api/usuarios/contratistas')
                 setContratistas(res.data)
             } catch (error) {console.log(error)}
         } 

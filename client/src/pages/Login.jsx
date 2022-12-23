@@ -1,5 +1,4 @@
-import React from 'react'
-import { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
@@ -17,6 +16,7 @@ const Login = () => {
         try {
             const res = await axios.post("http://localhost:8800/api/auth/login", inputs);
             window.sessionStorage.setItem('user', JSON.stringify(res.data));
+            window.location.reload()
             if(res.data.rol === 0) navigate("/admin");
             if(res.data.rol === 1) navigate("/");
         } catch (error) {
@@ -45,7 +45,7 @@ const Login = () => {
             <button onClick={handleSubmit} className="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Identificarse</button>
             {err && <p className="text-red-500 text-xs">{err}</p>}
             <p className="text-xs text-gray-500 mt-3">
-                No estas registrado. Crea una nueva cuenta <a href="/signin">aqui</a></p>
+                No estas registrado. Crea una nueva cuenta <a href="/register">aqui</a></p>
             </div>
         </div>
     </section>

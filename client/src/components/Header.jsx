@@ -6,8 +6,12 @@ const Header = () => {
     useEffect(() => {
         const user = JSON.parse(window.sessionStorage.getItem('user'));
         setUser(user);
-        console.log('user', user)
     }, []);
+
+    const logout = () => {
+        window.sessionStorage.removeItem('user');
+        window.location.reload();
+    }
 
   return (
     <header className="text-gray-600 body-font">
@@ -16,20 +20,23 @@ const Header = () => {
         <img className='h-10 w-12' src="vaina.png" alt="logo" />
         </a>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          {(user && user.rol === 0) &&
+          {(user && user.rol === 0) ?
             <div>
+              <a href='/usuarios' className="mr-5 hover:text-gray-900">Usuarios</a>
               <a href='/clientes' className="mr-5 hover:text-gray-900">Clientes</a>
               <a href='/contratistas' className="mr-5 hover:text-gray-900">Contratistas</a>
+              <a href='/serviciosadm' className="mr-5 hover:text-gray-900">Servicios</a>
+              <a href='/about' className="mr-5 hover:text-gray-900">Nosotros</a>
+            </div>
+            : 
+            <div>
+              <a href='/servicios' className="mr-5 hover:text-gray-900">Servicios</a>
+              <a href='/about' className="mr-5 hover:text-gray-900">Nosotros</a>
             </div>
           }
-          <a className="mr-5 hover:text-gray-900">Productos</a>
-          <a className="mr-5 hover:text-gray-900">Nosotros</a>
         </nav>
-        {/* Add a shopping cart section, (save on localstrg???) */}
-        {/* Hover and then display a card of account log, sign and setings */}
-
         {user ?
-          (<span className='font-bold'>Hola {user.user}!</span>)
+          (<span className='font-bold '>Hola {user.user}!<button onClick={logout} className="mx-2 inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 mr-2 md:mt-0">Salir</button></span>)
           :
           (<a href='/login' className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 mr-2 md:mt-0">Identificarse</a>)
         }
