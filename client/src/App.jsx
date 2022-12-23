@@ -10,6 +10,7 @@ import Usuarios from "./pages/Usuarios"
 import Clientes from "./pages/Clientes"
 import Contratistas from "./pages/Contratistas"
 import Servicios from "./pages/Servicios"
+import ServicePage from "./pages/ServicePage"
 import ServiciosAdmin from "./pages/ServiciosAdmin"
 import About from "./pages/About"
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/clientes" element={<Clientes/>} />
           <Route path="/contratistas" element={<Contratistas/>} />
           <Route path="/servicios" element={<Servicios/>} />
+          <Route path="/servicios/:id" element={<ServicePage/>} />
           <Route path="/serviciosadm" element={<ServiciosAdmin/>} />
           <Route path="/about" element={<About/>} />
           {/* <Route path="/update/:id" element={<Update/>} /> Ruta con id*/}

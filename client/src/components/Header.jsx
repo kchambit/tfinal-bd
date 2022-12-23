@@ -31,7 +31,7 @@ const Header = () => {
             : 
             <div>
               <a href='/servicios' className="mr-5 hover:text-gray-900">Servicios</a>
-              <a href='/about' className="mr-5 hover:text-gray-900">Nosotros</a>
+              {/* <a href='/about' className="mr-5 hover:text-gray-900">Nosotros</a> */}
             </div>
           }
         </nav>

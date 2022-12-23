@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'  
 
 const ServiciosAdmin = () => {
+    const [file, setFile] = useState() //Service image file
     const [servicios, setServicios] = useState([])
     const [serviceToUpdate, setServiceToUpdate] = useState()
     const [servicio, setServicio] = useState({
@@ -28,6 +29,7 @@ const ServiciosAdmin = () => {
             await axios.post('http://localhost:8800/api/servicios', servicio)
             window.location.reload()
         } catch (error) {console.log(error)}
+        setFormState('Editing')
     }
 
     const deleteServicio = async (id) => {
@@ -90,7 +92,7 @@ const ServiciosAdmin = () => {
                             <td className="p-3 px-5"></td>
                             <td className="p-3 px-5"></td>
                             <td className="p-3 px-5 flex justify-end"></td>
-                            <td><button onClick={()=>addServicio(servicio.service)} type="button" className="text-sm bg-gray-500 hover:bg-gray-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Agregar +</button></td>
+                            <td><button onClick={()=>setFormState("Creating")} type="button" className="text-sm bg-gray-500 hover:bg-gray-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Agregar +</button></td>
                     </tr>               
                 </tbody>
             </table>
@@ -118,8 +120,16 @@ const ServiciosAdmin = () => {
                 <label htmlFor="stock" className="leading-7 text-sm text-gray-600">Stock</label>
                 <input type="number" name="stock" onChange={handleChange} value={servicio.stock} className="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
             </div>
+            {
+            formState === "Editing" ?
             <button onClick={()=>updateService()} type="button" className="mr-3 text-sm bg-orange-500 hover:bg-orange-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button>
-            <button onClick={()=>createService()} type="button" className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Crear</button>
+            :
+            <div>
+                <input onChange={e => setFile(e.target.files[0])}  type="file" accept='image/*'/>
+                <img src={file} alt="imagen"/>
+                <button onClick={()=>createService()} type="button" className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Crear</button>
+            </div>
+            }
         </div>
     </div>
   )
